@@ -37,15 +37,15 @@ def number_to_word(num):
 
     return word
 
-# Get input from the user
+
 user_input = input("Enter a number: ")
 
-# Convert the input to an integer
+
 try:
     num = int(user_input)
 except ValueError:
     print("Invalid input. Please enter a valid integer.")
 else:
-    # Convert the number to its word representation
+
     word = number_to_word(num)
     print(f"The word representation of {num} is: {word}")
