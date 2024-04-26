@@ -76,32 +76,32 @@ p#result {
     <div class="navbar">
         <a href="./index.html">Home</a>
         <a href="./Bodmas.html">BODMAS</a>
-        <a href="./convertno.html">Num Converter</a>
-        <a href="./convertno.html">Money converter</a>
+        <a href="./anagram.html">Anagram</a>
+        <a href="./convertno.html">Number converter</a>
+        <a href="./decimalpoint.html">Monetary converter</a>
     </div>
     <h1>Mathematics Expression Calculator</h1>
     <form id="bodmasForm">
         <input type="text" id="expression" placeholder="Enter the expression (e.g., 3*(2+4)+5)">
-        <button type="button" onclick="calculate()">Calculate</button>
+        <button type="button" onclick="solve()">Calculate</button>
     </form>
     <p id="result"></p>
 
     <script>
-        function calculate() {
-            var expression = document.getElementById("expression").value;
-            
-            try {
-                var result = eval(expression); // Evaluate the expression using JavaScript's eval() function
-                
-                if (isNaN(result)) {
-                    throw new Error("Invalid expression");
-                }
+    function solve() {
+        var expression = document.getElementById('expression').value;
+        var result = evaluateExpression(expression);
+        document.getElementById('result').innerText = 'Result: ' + result;
+    }
 
-                document.getElementById("result").textContent = "Result: " + result;
-            } catch (error) {
-                document.getElementById("result").textContent = "Error: " + error.message;
-            }
+    function evaluateExpression(expression) {
+        try {
+            expression = expression.replace(/x/g, '*').replace(/\^/g, '**');
+            return eval(expression);
+        } catch (error) {
+            return 'Invalid expression';
         }
+    }
     </script>
 </body>
 </html>
