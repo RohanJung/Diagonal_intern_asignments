@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monetary Value Formatter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    input[type="radio"] + label {
+      display: inline-block;
+      cursor: pointer;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    input[type="radio"]:checked + label {
+      background-color: black;
+      color: #fff;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: black;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: black;
+    }
+
+    p#formattedValue {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="./index.html">Home</a>
+    <a href="./anagram.html">Anagram</a>
+    <a href="./Bodmas.html">BODMAS</a>
+    <a href="./convertno.html">Num Converter</a>
+    
+</div>
+  <div class="container">
+    <h2>Monetary Value Formatter</h2>
+    <label for="valueInput">Enter a monetary value:</label>
+    <input type="text" id="valueInput" placeholder="Enter value...">
+    <div>
+      <input type="radio" id="nepaliUnits" name="units" checked>
+      <label for="nepaliUnits">Nepali Units</label>
+      <input type="radio" id="internationalUnits" name="units">
+      <label for="internationalUnits">International Units</label>
+    </div>
+    <button onclick="formatValue()">Format Value</button>
+    <p id="formattedValue"></p>
+  </div>
+  <script>
+    function formatValue() {
+      var valueInput = document.getElementById("valueInput").value;
+      var isNepaliUnits = document.getElementById("nepaliUnits").checked;
+
+      // Check if the input value is a valid number
+      if (isNaN(valueInput) || valueInput === "") {
+        alert("Please enter a valid numerical value.");
+        return;
+      }
+
+      // Convert the input value to a floating-point number
+      var value = parseFloat(valueInput);
+
+      // Format the value based on the selected units
+      var formattedValue;
+      if (isNepaliUnits) {
+        formattedValue = new Intl.NumberFormat("en-IN", {
+          style: "currency",
+          currency: "NPR"
+        }).format(value);
+      } else {
+        formattedValue = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD"
+        }).format(value);
+      }
+
+      // Display the formatted value
+      document.getElementById("formattedValue").textContent = "Formatted value: " + formattedValue;
+    }
+  </script>
+</body>
+</html>

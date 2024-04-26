@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Expression Solver</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .navbar {
+        background-color: #333;
+        overflow: hidden;
+    }
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .calculator {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 20px auto;
+        width: 300px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    button:hover {
+        background-color: blue;
+    }
+
+    #result {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-link {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: blue;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .back-link:hover {
+        background-color: rebeccapurple;
+    }
+</style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="calculator">
+        <h2>Math Expression Solver</h2>
+        <input type="text" id="expression" placeholder="Enter expression">
+        <button onclick="solveExpression()">Solve</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function solveExpression() {
+            var expression = document.getElementById('expression').value;
+            var result = evaluateExpression(expression);
+            document.getElementById('result').innerText = 'Result: ' + result;
+        }
+
+        function evaluateExpression(expression) {
+            try {
+                expression = expression.replace(/x/g, '*').replace(/\^/g, '**');
+                return eval(expression);
+            } catch (error) {
+                return 'Invalid expression';
+            }
+        }
+    </script>
+</body>
+</html>
